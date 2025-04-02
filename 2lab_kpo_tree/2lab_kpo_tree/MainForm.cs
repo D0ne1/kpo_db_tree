@@ -173,7 +173,18 @@ namespace _2lab_kpo_tree
 
         private void добавитьГруппуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Факультет выбран
+            {
+                int facultyId = (int)trv_Data.SelectedNode.Tag;
+
+                using (var form = new AddGroup(facultyId, ConnectionString))
+                {
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        btn_load.PerformClick(); // Обновляем дерево
+                    }
+                }
+            }
         }
 
         private int GetFacultyIdByName(string facultyName)
@@ -216,7 +227,21 @@ namespace _2lab_kpo_tree
                 MessageBox.Show("Факультет удален.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+        private void groupContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            if (trv_Data.GetNodeAt(trv_Data.PointToClient(Cursor.Position)) is TreeNode node)
+            {
+                trv_Data.SelectedNode = node;  // Принудительно выделяем узел под курсором
+            }
+        }
+        private void trv_Data_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                trv_Data.SelectedNode = trv_Data.GetNodeAt(e.X, e.Y);
+            }
+        }
 
-        
+
     }
 }

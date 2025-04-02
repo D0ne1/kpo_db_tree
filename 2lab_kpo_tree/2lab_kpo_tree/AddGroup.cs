@@ -13,17 +13,15 @@ namespace _2lab_kpo_tree
 {
     public partial class AddGroup : Form
     {
-        private readonly string _facultyId;
-        private const string ConnectionString = @"Data Source=D0NEL;Initial Catalog=University;Integrated Security=True";
-        public AddGroup(string facultyId)
+        private string ConnectionString;
+        private int FacultyId;
+
+        public AddGroup(int facultyId, string connectionString)
         {
             InitializeComponent();
-            _facultyId = facultyId;
-
-            // Автоматически заполняем FacultyId и делаем его неизменяемым
-            textBoxFacultyId.Text = _facultyId;
-            textBoxFacultyId.ReadOnly = true;
-        }   
+            FacultyId = facultyId;
+            ConnectionString = connectionString;
+        }
 
         private void textBoxId_TextChanged(object sender, EventArgs e)
         {
@@ -42,61 +40,27 @@ namespace _2lab_kpo_tree
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // Проверяем, что Title не пустой
             if (string.IsNullOrWhiteSpace(textBoxTitle.Text))
             {
-                return; // Просто выходим без сообщения
+                MessageBox.Show("Введите название группы!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            try
+            using (SqlConnection cn = new SqlConnection(ConnectionString))
             {
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                cn.Open();
+                string query = "INSERT INTO Groups (Title, FacultyId) VALUES (@Title, @FacultyId)";
+                using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
-                    conn.Open();
-
-                    // Если Id не указан, делаем автоинкремент
-                    string sqlQuery = string.IsNullOrEmpty(textBoxId.Text)
-                        ? "INSERT INTO Groups (Faculty_id, Title) VALUES (@facultyId, @title)"
-                        : "INSERT INTO Groups (Id, Faculty_id, Title) VALUES (@id, @facultyId, @title)";
-
-                    using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
-                    {
-                        if (!string.IsNullOrEmpty(textBoxId.Text))
-                        {
-                            cmd.Parameters.AddWithValue("@id", int.Parse(textBoxId.Text));
-                        }
-
-                        cmd.Parameters.AddWithValue("@facultyId", int.Parse(_facultyId));
-                        cmd.Parameters.AddWithValue("@title", textBoxTitle.Text);
-
-                        cmd.ExecuteNonQuery();
-                    }
+                    cmd.Parameters.AddWithValue("@Title", textBoxTitle.Text);
+                    cmd.Parameters.AddWithValue("@FacultyId", FacultyId);
+                    cmd.ExecuteNonQuery();
                 }
-                this.DialogResult = DialogResult.OK;
-                this.Close();
             }
-            catch
-            {
-                this.DialogResult = DialogResult.None; // Оставляем форму открытой при ошибке
-            }
-        }
-        // Валидация ввода для ID (только цифры)
-        private void textBoxId_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
 
-        // Валидация ввода для Title (можно добавить специфичные проверки)
-        private void textBoxTitle_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Пример: запрет специальных символов
-            if (e.KeyChar == '\'' || e.KeyChar == '"' || e.KeyChar == ';')
-            {
-                e.Handled = true;
-            }
+            MessageBox.Show("Группа добавлена!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

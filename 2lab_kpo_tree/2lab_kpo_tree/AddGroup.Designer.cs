@@ -29,75 +29,34 @@
         private void InitializeComponent()
         {
             this.textBoxTitle = new System.Windows.Forms.TextBox();
-            this.textBoxFacultyId = new System.Windows.Forms.TextBox();
-            this.textBoxId = new System.Windows.Forms.TextBox();
             this.labelGroupTitle = new System.Windows.Forms.Label();
-            this.labelFacultyId = new System.Windows.Forms.Label();
-            this.labelId = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxTitle
             // 
-            this.textBoxTitle.Location = new System.Drawing.Point(120, 82);
+            this.textBoxTitle.Location = new System.Drawing.Point(147, 43);
             this.textBoxTitle.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxTitle.Name = "textBoxTitle";
             this.textBoxTitle.Size = new System.Drawing.Size(147, 22);
             this.textBoxTitle.TabIndex = 15;
             this.textBoxTitle.TextChanged += new System.EventHandler(this.textBoxTitle_TextChanged);
             // 
-            // textBoxFacultyId
-            // 
-            this.textBoxFacultyId.Location = new System.Drawing.Point(120, 50);
-            this.textBoxFacultyId.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxFacultyId.Name = "textBoxFacultyId";
-            this.textBoxFacultyId.Size = new System.Drawing.Size(147, 22);
-            this.textBoxFacultyId.TabIndex = 14;
-            this.textBoxFacultyId.TextChanged += new System.EventHandler(this.textBoxFacultyId_TextChanged);
-            // 
-            // textBoxId
-            // 
-            this.textBoxId.Location = new System.Drawing.Point(120, 14);
-            this.textBoxId.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxId.Name = "textBoxId";
-            this.textBoxId.Size = new System.Drawing.Size(147, 22);
-            this.textBoxId.TabIndex = 13;
-            this.textBoxId.TextChanged += new System.EventHandler(this.textBoxId_TextChanged);
-            // 
             // labelGroupTitle
             // 
             this.labelGroupTitle.AutoSize = true;
-            this.labelGroupTitle.Location = new System.Drawing.Point(13, 86);
+            this.labelGroupTitle.Location = new System.Drawing.Point(14, 43);
             this.labelGroupTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelGroupTitle.Name = "labelGroupTitle";
-            this.labelGroupTitle.Size = new System.Drawing.Size(33, 16);
+            this.labelGroupTitle.Size = new System.Drawing.Size(123, 16);
             this.labelGroupTitle.TabIndex = 12;
-            this.labelGroupTitle.Text = "Title";
-            // 
-            // labelFacultyId
-            // 
-            this.labelFacultyId.AutoSize = true;
-            this.labelFacultyId.Location = new System.Drawing.Point(13, 50);
-            this.labelFacultyId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelFacultyId.Name = "labelFacultyId";
-            this.labelFacultyId.Size = new System.Drawing.Size(61, 16);
-            this.labelFacultyId.TabIndex = 11;
-            this.labelFacultyId.Text = "FacultyId";
-            // 
-            // labelId
-            // 
-            this.labelId.AutoSize = true;
-            this.labelId.Location = new System.Drawing.Point(13, 18);
-            this.labelId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelId.Name = "labelId";
-            this.labelId.Size = new System.Drawing.Size(18, 16);
-            this.labelId.TabIndex = 10;
-            this.labelId.Text = "Id";
+            this.labelGroupTitle.Text = "Название группы";
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(147, 114);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(173, 95);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(121, 28);
@@ -108,7 +67,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(17, 114);
+            this.btnSave.Location = new System.Drawing.Point(17, 95);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(121, 28);
@@ -119,15 +78,13 @@
             // 
             // AddGroup
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 174);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(329, 158);
             this.Controls.Add(this.textBoxTitle);
-            this.Controls.Add(this.textBoxFacultyId);
-            this.Controls.Add(this.textBoxId);
             this.Controls.Add(this.labelGroupTitle);
-            this.Controls.Add(this.labelFacultyId);
-            this.Controls.Add(this.labelId);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Name = "AddGroup";
@@ -140,11 +97,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBoxTitle;
-        private System.Windows.Forms.TextBox textBoxFacultyId;
-        private System.Windows.Forms.TextBox textBoxId;
         private System.Windows.Forms.Label labelGroupTitle;
-        private System.Windows.Forms.Label labelFacultyId;
-        private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
     }
