@@ -163,8 +163,24 @@ namespace _2lab_kpo_tree
 
         private void изменитьГруппуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if (trv_Data.SelectedNode == null)
+            {
+                MessageBox.Show("Выберите группу для изменения!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int groupId = (int)trv_Data.SelectedNode.Tag;
+            string groupName = trv_Data.SelectedNode.Text;
+
+            using (var form = new UpdateGroup(groupId, groupName, ConnectionString))
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    btn_load.PerformClick(); // Обновляем дерево
+                }
+            }
         }
+
 
         private void btn_change_stdn_Click(object sender, EventArgs e)
         {
@@ -201,51 +217,24 @@ namespace _2lab_kpo_tree
                 return (int)cmd.ExecuteScalar();
             }
         }
-        private bool FacultyHasGroups(int facultyId)
+        private void addgroupwithoutgroupsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            using (var cn = new SqlConnection(ConnectionString))
+            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Если выбран факультет
             {
-                cn.Open();
-                var cmd = new SqlCommand("SELECT COUNT(*) FROM Groups WHERE Faculty_id = @FacultyId", cn);
-                cmd.Parameters.AddWithValue("@FacultyId", facultyId);
+                int facultyId = (int)trv_Data.SelectedNode.Tag;
 
-                var result = cmd.ExecuteScalar();
-                return result != null && (int)result > 0;
-            }
-        }
-
-        public void DeleteFaculty(int facultyId)
-        {
-            if (MessageBox.Show("Вы уверены, что хотите удалить этот факультет?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
-                using (SqlConnection conn = new SqlConnection("your_connection_string"))
+                using (var form = new AddGroup(facultyId, ConnectionString)) // Исправлено название формы
                 {
-                    conn.Open();
-                    string query = "DELETE FROM Faculties WHERE Id = @Id";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    if (form.ShowDialog() == DialogResult.OK)
                     {
-                        cmd.Parameters.AddWithValue("@Id", facultyId);
-                        cmd.ExecuteNonQuery();
+                        btn_load.PerformClick(); // Обновляем дерево
                     }
                 }
-                MessageBox.Show("Факультет удален.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-        private void groupContextMenu_Opening(object sender, CancelEventArgs e)
-        {
-            if (trv_Data.GetNodeAt(trv_Data.PointToClient(Cursor.Position)) is TreeNode node)
+            else
             {
-                trv_Data.SelectedNode = node;  // Принудительно выделяем узел под курсором
+                MessageBox.Show("Выберите факультет, чтобы добавить группу!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void trv_Data_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                trv_Data.SelectedNode = trv_Data.GetNodeAt(e.X, e.Y);
-            }
-        }
-
-
     }
 }

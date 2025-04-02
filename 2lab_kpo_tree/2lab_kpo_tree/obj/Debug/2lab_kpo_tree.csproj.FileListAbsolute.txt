@@ -25,3 +25,4 @@ C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kp
 C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\2lab_kpo_tree.csproj.CoreCompileInputs.cache
 C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\2lab_kpo_tree.exe
 C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\2lab_kpo_tree.pdb
+C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\_2lab_kpo_tree.UpdateGroup.resources

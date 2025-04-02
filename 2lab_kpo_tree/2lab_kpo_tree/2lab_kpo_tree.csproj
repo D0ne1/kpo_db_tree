@@ -72,6 +72,12 @@
     <Compile Include="UpdateFaculty.Designer.cs">
       <DependentUpon>UpdateFaculty.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateGroup.Designer.cs">
+      <DependentUpon>UpdateGroup.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddFaculty.resx">
       <DependentUpon>AddFaculty.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +98,9 @@
     </Compile>
     <EmbeddedResource Include="UpdateFaculty.resx">
       <DependentUpon>UpdateFaculty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateGroup.resx">
+      <DependentUpon>UpdateGroup.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|solutionrelative:2lab_kpo_tree\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\addgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|solutionrelative:2lab_kpo_tree\\addgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\addgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|solutionrelative:2lab_kpo_tree\\addgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|solutionrelative:2lab_kpo_tree\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|c:\\\u0434\u0430\u043D\u0438\u0438\u043B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\updategroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|solutionrelative:2lab_kpo_tree\\updategroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|c:\\\u0434\u0430\u043D\u0438\u0438\u043B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\updategroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1C18F1B7-06F3-48E4-873F-6C5E972464C6}|2lab_kpo_tree\\2lab_kpo_tree.csproj|solutionrelative:2lab_kpo_tree\\updategroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +30,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "MainForm.cs [Design]",
               "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\MainForm.cs",
               "RelativeDocumentMoniker": "2lab_kpo_tree\\MainForm.cs",
@@ -49,7 +49,7 @@
               "RelativeDocumentMoniker": "2lab_kpo_tree\\MainForm.cs",
               "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\MainForm.cs",
               "RelativeToolTip": "2lab_kpo_tree\\MainForm.cs",
-              "ViewState": "AQIAAKYAAAAAAAAAAAAIwKsAAAAJAAAA",
+              "ViewState": "AQIAAKAAAAAAAAAAAAAQwLYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T11:36:52.98Z",
               "IsPinned": true,
@@ -57,28 +57,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AddGroup.cs [Design]",
-              "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\AddGroup.cs",
-              "RelativeDocumentMoniker": "2lab_kpo_tree\\AddGroup.cs",
-              "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\AddGroup.cs [Design]",
-              "RelativeToolTip": "2lab_kpo_tree\\AddGroup.cs [Design]",
+              "DocumentIndex": 2,
+              "Title": "UpdateGroup.cs [Design]",
+              "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\UpdateGroup.cs",
+              "RelativeDocumentMoniker": "2lab_kpo_tree\\UpdateGroup.cs",
+              "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\UpdateGroup.cs [Design]",
+              "RelativeToolTip": "2lab_kpo_tree\\UpdateGroup.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T10:49:07.583Z",
+              "WhenOpened": "2025-04-02T12:01:40.939Z",
               "IsPinned": true,
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AddGroup.cs",
-              "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\AddGroup.cs",
-              "RelativeDocumentMoniker": "2lab_kpo_tree\\AddGroup.cs",
-              "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\AddGroup.cs",
-              "RelativeToolTip": "2lab_kpo_tree\\AddGroup.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAowDMAAABfAAAA",
+              "DocumentIndex": 3,
+              "Title": "UpdateGroup.cs",
+              "DocumentMoniker": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\UpdateGroup.cs",
+              "RelativeDocumentMoniker": "2lab_kpo_tree\\UpdateGroup.cs",
+              "ToolTip": "C:\\\u0414\u0410\u041D\u0418\u0418\u041B\\\u0443\u043D\u0438\u0432\u0435\u0440\\2 \u043A\u0443\u0440\u0441\\\u043A\u043F\u043E\\.2lab_kpo_new\\kpo_db_tree\\2lab_kpo_tree\\2lab_kpo_tree\\UpdateGroup.cs",
+              "RelativeToolTip": "2lab_kpo_tree\\UpdateGroup.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAYwDUAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-02T10:50:32.182Z",
+              "WhenOpened": "2025-04-02T12:03:21.388Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
