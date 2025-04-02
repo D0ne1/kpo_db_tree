@@ -23,7 +23,7 @@ namespace _2lab_kpo_tree
             string facultyTitle = txt_faculty.Text.Trim();
             if (string.IsNullOrEmpty(facultyTitle))
             {
-                MessageBox.Show("Название факультета не может быть пустым.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Название факультета не может быть пустым!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

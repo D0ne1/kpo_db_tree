@@ -27,7 +27,7 @@ namespace _2lab_kpo_tree
         {
             if (string.IsNullOrWhiteSpace(txt_new_group_title.Text))
             {
-                MessageBox.Show("Введите название группы!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Название группы не может быть пустым!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
