@@ -58,6 +58,18 @@
     <Compile Include="AddGroup.Designer.cs">
       <DependentUpon>AddGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddStudent.Designer.cs">
+      <DependentUpon>AddStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeStudent.Designer.cs">
+      <DependentUpon>ChangeStudent.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,23 +78,29 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UpdateFaculty.cs">
+    <Compile Include="ChangeFaculty.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdateFaculty.Designer.cs">
-      <DependentUpon>UpdateFaculty.cs</DependentUpon>
+    <Compile Include="ChangeFaculty.Designer.cs">
+      <DependentUpon>ChangeFaculty.cs</DependentUpon>
     </Compile>
-    <Compile Include="UpdateGroup.cs">
+    <Compile Include="ChangeGroup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UpdateGroup.Designer.cs">
-      <DependentUpon>UpdateGroup.cs</DependentUpon>
+    <Compile Include="ChangeGroup.Designer.cs">
+      <DependentUpon>ChangeGroup.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AddFaculty.resx">
       <DependentUpon>AddFaculty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddGroup.resx">
       <DependentUpon>AddGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddStudent.resx">
+      <DependentUpon>AddStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeStudent.resx">
+      <DependentUpon>ChangeStudent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -96,11 +114,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UpdateFaculty.resx">
-      <DependentUpon>UpdateFaculty.cs</DependentUpon>
+    <EmbeddedResource Include="ChangeFaculty.resx">
+      <DependentUpon>ChangeFaculty.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UpdateGroup.resx">
-      <DependentUpon>UpdateGroup.cs</DependentUpon>
+    <EmbeddedResource Include="ChangeGroup.resx">
+      <DependentUpon>ChangeGroup.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

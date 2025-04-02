@@ -108,7 +108,7 @@ namespace _2lab_kpo_tree
             if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Факультет
             {
                 int facultyId = GetFacultyIdByName(trv_Data.SelectedNode.Text);
-                using (var form = new UpdateFaculty(facultyId, trv_Data.SelectedNode.Text))
+                using (var form = new ChangeFaculty(facultyId, trv_Data.SelectedNode.Text))
                 {
                     if (form.ShowDialog() == DialogResult.OK)
                     {
@@ -189,7 +189,7 @@ namespace _2lab_kpo_tree
             int groupId = (int)trv_Data.SelectedNode.Tag;
             string groupName = trv_Data.SelectedNode.Text;
 
-            using (var form = new UpdateGroup(groupId, groupName, ConnectionString))
+            using (var form = new ChangeGroup(groupId, groupName, ConnectionString))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -235,16 +235,60 @@ namespace _2lab_kpo_tree
 
         private void добавитьстудентаContextMenuStrip_Click(object sender, EventArgs e)
         {
-
+            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent != null) // Выбрана группа
+            {
+                int groupId = (int)trv_Data.SelectedNode.Tag;
+                using (var form = new AddStudent(groupId, ConnectionString))
+                {
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        btn_load.PerformClick(); // Обновляем дерево
+                    }
+                }
+            }
         }
         private void изменитьстудентаContextMenuStrip_Click(object sender, EventArgs e)
         {
+            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent != null) // Выбран студент
+            {
+                int studentId = (int)trv_Data.SelectedNode.Tag;
+                string[] nameParts = trv_Data.SelectedNode.Text.Split(' ');
+                string name = nameParts.Length > 0 ? nameParts[0] : "";
+                string surname = nameParts.Length > 1 ? nameParts[1] : "";
 
+                using (var form = new ChangeStudent(studentId, name, surname, ConnectionString))
+                {
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        btn_load.PerformClick(); // Обновляем дерево
+                    }
+                }
+            }
         }
 
         private void удалитьстудентаContextMenuStrip_Click(object sender, EventArgs e)
         {
+            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent != null) // Выбран студент
+            {
+                int studentId = (int)trv_Data.SelectedNode.Tag;
 
+                if (MessageBox.Show("Вы уверены, что хотите удалить этого студента?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    using (SqlConnection cn = new SqlConnection(ConnectionString))
+                    {
+                        cn.Open();
+                        string query = "DELETE FROM Students WHERE Id = @StudentId";
+                        using (SqlCommand cmd = new SqlCommand(query, cn))
+                        {
+                            cmd.Parameters.AddWithValue("@StudentId", studentId);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Студент удален!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btn_load.PerformClick(); // Обновляем дерево
+                }
+            }
         }
 
         private int GetFacultyIdByName(string facultyName)

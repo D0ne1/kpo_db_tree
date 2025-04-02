@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace _2lab_kpo_tree
 {
-    public partial class UpdateFaculty : Form
+    public partial class ChangeFaculty : Form
     {
         private int facultyId;
-        public UpdateFaculty(int id, string currentTitle)
+        public ChangeFaculty(int id, string currentTitle)
         {
             InitializeComponent();
             facultyId = id;

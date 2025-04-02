@@ -23,21 +23,6 @@ namespace _2lab_kpo_tree
             ConnectionString = connectionString;
         }
 
-        private void textBoxId_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxFacultyId_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxTitle_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBoxTitle.Text))

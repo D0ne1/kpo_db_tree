@@ -41,7 +41,6 @@
             this.textBoxTitle.Name = "textBoxTitle";
             this.textBoxTitle.Size = new System.Drawing.Size(147, 22);
             this.textBoxTitle.TabIndex = 15;
-            this.textBoxTitle.TextChanged += new System.EventHandler(this.textBoxTitle_TextChanged);
             // 
             // labelGroupTitle
             // 

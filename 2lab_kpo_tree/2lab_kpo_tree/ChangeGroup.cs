@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace _2lab_kpo_tree
 {
-    public partial class UpdateGroup : Form
+    public partial class ChangeGroup : Form
     {
         private string ConnectionString;
         private int GroupId;
-        public UpdateGroup(int groupId, string groupName, string connectionString)
+        public ChangeGroup(int groupId, string groupName, string connectionString)
         {
             InitializeComponent();
             GroupId = groupId;

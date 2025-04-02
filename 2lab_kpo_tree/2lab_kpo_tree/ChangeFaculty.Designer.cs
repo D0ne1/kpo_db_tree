@@ -1,6 +1,6 @@
 ﻿namespace _2lab_kpo_tree
 {
-    partial class UpdateFaculty
+    partial class ChangeFaculty
     {
         /// <summary>
         /// Required designer variable.

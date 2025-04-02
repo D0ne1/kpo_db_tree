@@ -1,6 +1,6 @@
 ﻿namespace _2lab_kpo_tree
 {
-    partial class UpdateGroup
+    partial class ChangeGroup
     {
         /// <summary>
         /// Required designer variable.
