@@ -14,10 +14,80 @@ namespace _2lab_kpo_tree
 {
     public partial class MainForm : Form
     {
+
+
         string ConnectionString = @"Data Source=D0NEL;Initial Catalog=University;Integrated Security=True";
         public MainForm()
         {
             InitializeComponent();
+            trv_Data.ItemDrag += trv_Data_ItemDrag; // Начало перетаскивания
+            trv_Data.DragEnter += trv_Data_DragEnter; // Проверка, можно ли сюда перетаскивать
+            trv_Data.DragDrop += trv_Data_DragDrop; // Обработка завершения перетаскивания
+            trv_Data.AllowDrop = true;
+
+        }
+        private void trv_Data_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            TreeNode draggedNode = (TreeNode)e.Item;
+
+            if (draggedNode.ImageIndex == 2)
+            {
+                DoDragDrop(draggedNode, DragDropEffects.Move);
+            }
+        }
+
+
+        private void trv_Data_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
+            {
+                TreeNode targetNode = trv_Data.GetNodeAt(trv_Data.PointToClient(new Point(e.X, e.Y)));
+                if (targetNode != null && targetNode.ImageIndex == 1) // Если это группа
+                {
+                    e.Effect = DragDropEffects.Move;
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.None;
+                }
+            }
+        }
+
+        private void trv_Data_DragDrop(object sender, DragEventArgs e)
+        {
+            TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
+            Point targetPoint = trv_Data.PointToClient(new Point(e.X, e.Y));
+            TreeNode targetNode = trv_Data.GetNodeAt(targetPoint);
+
+            if (targetNode == null)
+            {
+                MessageBox.Show("Не удалось определить целевой узел!");
+                return;
+            }
+
+            if (draggedNode != null && targetNode.ImageIndex == 1)
+            {
+
+                // Обновление БД и дерева
+                int newGroupId = (int)targetNode.Tag;
+                int studentId = (int)draggedNode.Tag;
+
+                using (SqlConnection cn = new SqlConnection(ConnectionString))
+                {
+                    cn.Open();
+                    string query = "UPDATE Students SET Group_id = @NewGroup WHERE Id = @StudentId";
+                    using (SqlCommand cmd = new SqlCommand(query, cn))
+                    {
+                        cmd.Parameters.AddWithValue("@NewGroup", newGroupId);
+                        cmd.Parameters.AddWithValue("@StudentId", studentId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                draggedNode.Remove();
+                targetNode.Nodes.Add(draggedNode);
+                targetNode.Expand();
+            }
         }
 
         private void btn_load_Click(object sender, EventArgs e)
@@ -42,6 +112,7 @@ namespace _2lab_kpo_tree
                     }
                 }
             }
+
         }
 
 
@@ -93,6 +164,7 @@ namespace _2lab_kpo_tree
                 }
             }
         }
+        
         private void добавитьФакультетToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new AddFaculty())
@@ -410,16 +482,6 @@ namespace _2lab_kpo_tree
             }
         }
 
-        private int GetFacultyIdByName(string facultyName)
-        {
-            using (var cn = new SqlConnection(ConnectionString))
-            {
-                cn.Open();
-                var cmd = new SqlCommand("SELECT Id FROM Faculties WHERE Title = @Title", cn);
-                cmd.Parameters.AddWithValue("@Title", facultyName);
-                return (int)cmd.ExecuteScalar();
-            }
-        }
         
     }
 }
