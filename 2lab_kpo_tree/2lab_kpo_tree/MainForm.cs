@@ -159,7 +159,7 @@ namespace _2lab_kpo_tree
             }
         }
 
-        private void добавитьГруппуToolStripMenuItem_Click(object sender, EventArgs e)
+        private void добавитьГруппуToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Если выбран факультет
             {
@@ -231,9 +231,18 @@ namespace _2lab_kpo_tree
                 }
             }
         }
-        
-        
-        private void btn_change_stdn_Click(object sender, EventArgs e)
+
+
+        private void добавитьстудентаContextMenuStrip_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void изменитьстудентаContextMenuStrip_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void удалитьстудентаContextMenuStrip_Click(object sender, EventArgs e)
         {
 
         }
@@ -248,26 +257,6 @@ namespace _2lab_kpo_tree
                 return (int)cmd.ExecuteScalar();
             }
         }
-        private void addgroupwithoutgroupsToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Если выбран факультет
-            {
-                int facultyId = (int)trv_Data.SelectedNode.Tag;
-
-                using (var form = new AddGroup(facultyId, ConnectionString)) // Исправлено название формы
-                {
-                    if (form.ShowDialog() == DialogResult.OK)
-                    {
-                        btn_load.PerformClick(); // Обновляем дерево
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Выберите факультет, чтобы добавить группу!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         
     }
 }
