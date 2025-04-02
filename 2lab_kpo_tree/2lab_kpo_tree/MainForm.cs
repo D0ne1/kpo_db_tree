@@ -159,8 +159,25 @@ namespace _2lab_kpo_tree
             }
         }
 
+        private void добавитьГруппуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Если выбран факультет
+            {
+                int facultyId = (int)trv_Data.SelectedNode.Tag;
 
-
+                using (var form = new AddGroup(facultyId, ConnectionString)) // Исправлено название формы
+                {
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        btn_load.PerformClick(); // Обновляем дерево
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите факультет, чтобы добавить группу!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void изменитьГруппуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (trv_Data.SelectedNode == null)
@@ -180,31 +197,45 @@ namespace _2lab_kpo_tree
                 }
             }
         }
+        private void удалитьгруппуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent != null) // Группа
+            {
+                int groupId = (int)trv_Data.SelectedNode.Tag;
 
+                if (MessageBox.Show("Вы уверены, что хотите удалить эту группу?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    using (SqlConnection conn = new SqlConnection(ConnectionString))
+                    {
+                        conn.Open();
 
+                        // Удаление студентов из группы
+                        string deleteStudentsQuery = "DELETE FROM Students WHERE Group_id = @GroupId";
+                        using (SqlCommand cmd1 = new SqlCommand(deleteStudentsQuery, conn))
+                        {
+                            cmd1.Parameters.AddWithValue("@GroupId", groupId);
+                            cmd1.ExecuteNonQuery();
+                        }
+
+                        // Удаление группы
+                        string deleteGroupQuery = "DELETE FROM Groups WHERE id = @GroupId";
+                        using (SqlCommand cmd2 = new SqlCommand(deleteGroupQuery, conn))
+                        {
+                            cmd2.Parameters.AddWithValue("@GroupId", groupId);
+                            cmd2.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Группа удалена!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btn_load.PerformClick(); // Обновляем дерево
+                }
+            }
+        }
+        
+        
         private void btn_change_stdn_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void добавитьГруппуToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Если выбран факультет
-            {
-                int facultyId = (int)trv_Data.SelectedNode.Tag;
-
-                using (var form = new AddGroup(facultyId, ConnectionString)) // Исправлено название формы
-                {
-                    if (form.ShowDialog() == DialogResult.OK)
-                    {
-                        btn_load.PerformClick(); // Обновляем дерево
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Выберите факультет, чтобы добавить группу!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private int GetFacultyIdByName(string facultyName)
@@ -236,5 +267,7 @@ namespace _2lab_kpo_tree
                 MessageBox.Show("Выберите факультет, чтобы добавить группу!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        
     }
 }
