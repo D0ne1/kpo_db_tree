@@ -47,7 +47,7 @@
             // 
             this.txt_new_faculty.Location = new System.Drawing.Point(216, 77);
             this.txt_new_faculty.Name = "txt_new_faculty";
-            this.txt_new_faculty.Size = new System.Drawing.Size(125, 22);
+            this.txt_new_faculty.Size = new System.Drawing.Size(192, 22);
             this.txt_new_faculty.TabIndex = 1;
             // 
             // btn_update_faculty
@@ -71,7 +71,7 @@
             this.btn_Cancel.UseVisualStyleBackColor = true;
             this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
-            // UpdateFaculty
+            // ChangeFaculty
             // 
             this.AcceptButton = this.btn_update_faculty;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -82,7 +82,7 @@
             this.Controls.Add(this.btn_update_faculty);
             this.Controls.Add(this.txt_new_faculty);
             this.Controls.Add(this.label1);
-            this.Name = "UpdateFaculty";
+            this.Name = "ChangeFaculty";
             this.Text = "UpdateFaculty";
             this.ResumeLayout(false);
             this.PerformLayout();

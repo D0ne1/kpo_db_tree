@@ -99,7 +99,29 @@ namespace _2lab_kpo_tree
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    btn_load.PerformClick(); // Обновляем дерево
+                    // Получаем только что добавленный факультет
+                    using (SqlConnection cn = new SqlConnection(ConnectionString))
+                    {
+                        cn.Open();
+                        string query = "SELECT TOP 1 Id, Title FROM Faculties ORDER BY Id DESC";
+                        using (SqlCommand cmd = new SqlCommand(query, cn))
+                        {
+                            using (SqlDataReader dr = cmd.ExecuteReader())
+                            {
+                                if (dr.Read())
+                                {
+                                    int facultyId = (int)dr["Id"];
+                                    string facultyName = dr["Title"].ToString();
+
+                                    // Создаем новый узел факультета и добавляем его в дерево
+                                    var facultyNode = new TreeNode(facultyName, 0, 0);
+                                    facultyNode.Tag = facultyId;
+                                    facultyNode.ContextMenuStrip = facultyMenuStrip;
+                                    trv_Data.Nodes.Add(facultyNode);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -107,12 +129,28 @@ namespace _2lab_kpo_tree
         {
             if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Факультет
             {
-                int facultyId = GetFacultyIdByName(trv_Data.SelectedNode.Text);
+                int facultyId = (int)trv_Data.SelectedNode.Tag;
                 using (var form = new ChangeFaculty(facultyId, trv_Data.SelectedNode.Text))
                 {
                     if (form.ShowDialog() == DialogResult.OK)
                     {
-                        btn_load.PerformClick(); // Обновляем дерево
+                        // Получаем обновленное название факультета
+                        using (SqlConnection cn = new SqlConnection(ConnectionString))
+                        {
+                            cn.Open();
+                            string query = "SELECT Title FROM Faculties WHERE Id = @FacultyId";
+                            using (SqlCommand cmd = new SqlCommand(query, cn))
+                            {
+                                cmd.Parameters.AddWithValue("@FacultyId", facultyId);
+                                using (SqlDataReader dr = cmd.ExecuteReader())
+                                {
+                                    if (dr.Read())
+                                    {
+                                        trv_Data.SelectedNode.Text = dr["Title"].ToString();
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -121,23 +159,23 @@ namespace _2lab_kpo_tree
         {
             if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Факультет
             {
-                int facultyId = (int)trv_Data.SelectedNode.Tag; // Получаем ID факультета из тега выбранного узла
+                int facultyId = (int)trv_Data.SelectedNode.Tag;
 
                 if (MessageBox.Show("Вы уверены, что хотите удалить этот факультет?", "Подтверждение", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     using (SqlConnection conn = new SqlConnection(ConnectionString))
                     {
                         conn.Open();
-                        // Удаляем студентов, если нужно (если у вас есть связь с группой):
+
+                        // Удаляем студентов, если они есть в группах этого факультета
                         string deleteStudentsQuery = "DELETE FROM Students WHERE Group_id IN (SELECT Id FROM Groups WHERE Faculty_id = @FacultyId)";
-                        using (SqlCommand cmd3 = new SqlCommand(deleteStudentsQuery, conn))
+                        using (SqlCommand cmd1 = new SqlCommand(deleteStudentsQuery, conn))
                         {
-                            cmd3.Parameters.AddWithValue("@FacultyId", facultyId);
-                            cmd3.ExecuteNonQuery();
+                            cmd1.Parameters.AddWithValue("@FacultyId", facultyId);
+                            cmd1.ExecuteNonQuery();
                         }
 
-                        // Если хотите удалить также группы и студентов:
-                        // Удаляем все группы, связанные с этим факультетом:
+                        // Удаляем все группы факультета
                         string deleteGroupsQuery = "DELETE FROM Groups WHERE Faculty_id = @FacultyId";
                         using (SqlCommand cmd2 = new SqlCommand(deleteGroupsQuery, conn))
                         {
@@ -145,19 +183,22 @@ namespace _2lab_kpo_tree
                             cmd2.ExecuteNonQuery();
                         }
 
-                        string query = "DELETE FROM Faculties WHERE Id = @Id"; // Удаляем факультет
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        // Удаляем сам факультет
+                        string deleteFacultyQuery = "DELETE FROM Faculties WHERE Id = @FacultyId";
+                        using (SqlCommand cmd3 = new SqlCommand(deleteFacultyQuery, conn))
                         {
-                            cmd.Parameters.AddWithValue("@Id", facultyId);
-                            cmd.ExecuteNonQuery();
+                            cmd3.Parameters.AddWithValue("@FacultyId", facultyId);
+                            cmd3.ExecuteNonQuery();
                         }
-
                     }
-                    MessageBox.Show("Факультет и все связанные данные удалены.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btn_load.PerformClick(); // Обновляем дерево
+
+                    // Удаляем узел из дерева
+                    trv_Data.SelectedNode.Remove();
+                    MessageBox.Show("Факультет удалён.", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
+
 
         private void добавитьГруппуToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -165,11 +206,34 @@ namespace _2lab_kpo_tree
             {
                 int facultyId = (int)trv_Data.SelectedNode.Tag;
 
-                using (var form = new AddGroup(facultyId, ConnectionString)) // Исправлено название формы
+                using (var form = new AddGroup(facultyId, ConnectionString))
                 {
                     if (form.ShowDialog() == DialogResult.OK)
                     {
-                        btn_load.PerformClick(); // Обновляем дерево
+                        // Получаем последнюю добавленную группу
+                        using (SqlConnection cn = new SqlConnection(ConnectionString))
+                        {
+                            cn.Open();
+                            string query = "SELECT TOP 1 Id, Title FROM Groups WHERE Faculty_id = @FacultyId ORDER BY Id DESC";
+                            using (SqlCommand cmd = new SqlCommand(query, cn))
+                            {
+                                cmd.Parameters.AddWithValue("@FacultyId", facultyId);
+                                using (SqlDataReader dr = cmd.ExecuteReader())
+                                {
+                                    if (dr.Read())
+                                    {
+                                        string groupName = dr["Title"].ToString();
+                                        int groupId = (int)dr["Id"];
+
+                                        // Создаем новый узел группы и добавляем в дерево
+                                        var groupNode = new TreeNode(groupName, 1, 1);
+                                        groupNode.Tag = groupId;
+                                        groupNode.ContextMenuStrip = groupContextMenu;
+                                        trv_Data.SelectedNode.Nodes.Add(groupNode);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -193,7 +257,23 @@ namespace _2lab_kpo_tree
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    btn_load.PerformClick(); // Обновляем дерево
+                    // Обновляем название группы в дереве
+                    using (SqlConnection cn = new SqlConnection(ConnectionString))
+                    {
+                        cn.Open();
+                        string query = "SELECT Title FROM Groups WHERE Id = @GroupId";
+                        using (SqlCommand cmd = new SqlCommand(query, cn))
+                        {
+                            cmd.Parameters.AddWithValue("@GroupId", groupId);
+                            using (SqlDataReader dr = cmd.ExecuteReader())
+                            {
+                                if (dr.Read())
+                                {
+                                    trv_Data.SelectedNode.Text = dr["Title"].ToString();
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -209,7 +289,7 @@ namespace _2lab_kpo_tree
                     {
                         conn.Open();
 
-                        // Удаление студентов из группы
+                        // Удаляем студентов из группы
                         string deleteStudentsQuery = "DELETE FROM Students WHERE Group_id = @GroupId";
                         using (SqlCommand cmd1 = new SqlCommand(deleteStudentsQuery, conn))
                         {
@@ -217,8 +297,8 @@ namespace _2lab_kpo_tree
                             cmd1.ExecuteNonQuery();
                         }
 
-                        // Удаление группы
-                        string deleteGroupQuery = "DELETE FROM Groups WHERE id = @GroupId";
+                        // Удаляем саму группу
+                        string deleteGroupQuery = "DELETE FROM Groups WHERE Id = @GroupId";
                         using (SqlCommand cmd2 = new SqlCommand(deleteGroupQuery, conn))
                         {
                             cmd2.Parameters.AddWithValue("@GroupId", groupId);
@@ -226,12 +306,12 @@ namespace _2lab_kpo_tree
                         }
                     }
 
+                    // Удаляем узел группы из дерева
+                    trv_Data.SelectedNode.Remove();
                     MessageBox.Show("Группа удалена!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btn_load.PerformClick(); // Обновляем дерево
                 }
             }
         }
-
 
         private void добавитьстудентаContextMenuStrip_Click(object sender, EventArgs e)
         {
@@ -242,7 +322,30 @@ namespace _2lab_kpo_tree
                 {
                     if (form.ShowDialog() == DialogResult.OK)
                     {
-                        btn_load.PerformClick(); // Обновляем дерево
+                        // Динамически добавляем нового студента в дерево
+                        using (SqlConnection cn = new SqlConnection(ConnectionString))
+                        {
+                            cn.Open();
+                            string query = "SELECT TOP 1 Id, Name, Surname FROM Students WHERE Group_id = @GroupId ORDER BY Id DESC";
+                            using (SqlCommand cmd = new SqlCommand(query, cn))
+                            {
+                                cmd.Parameters.AddWithValue("@GroupId", groupId);
+                                using (SqlDataReader dr = cmd.ExecuteReader())
+                                {
+                                    if (dr.Read())
+                                    {
+                                        string studentName = dr["Name"].ToString() + " " + dr["Surname"].ToString();
+                                        int studentId = (int)dr["Id"];
+
+                                        // Создаем новый узел студента и добавляем его к группе
+                                        var studentNode = new TreeNode(studentName, 2, 2);
+                                        studentNode.Tag = studentId;
+                                        studentNode.ContextMenuStrip = studentСontextMenu;
+                                        trv_Data.SelectedNode.Nodes.Add(studentNode);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -260,12 +363,27 @@ namespace _2lab_kpo_tree
                 {
                     if (form.ShowDialog() == DialogResult.OK)
                     {
-                        btn_load.PerformClick(); // Обновляем дерево
+                        // Обновляем текст узла без полной перезагрузки
+                        using (SqlConnection cn = new SqlConnection(ConnectionString))
+                        {
+                            cn.Open();
+                            string query = "SELECT Name, Surname FROM Students WHERE Id = @StudentId";
+                            using (SqlCommand cmd = new SqlCommand(query, cn))
+                            {
+                                cmd.Parameters.AddWithValue("@StudentId", studentId);
+                                using (SqlDataReader dr = cmd.ExecuteReader())
+                                {
+                                    if (dr.Read())
+                                    {
+                                        trv_Data.SelectedNode.Text = dr["Name"].ToString() + " " + dr["Surname"].ToString();
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
-
         private void удалитьстудентаContextMenuStrip_Click(object sender, EventArgs e)
         {
             if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent != null) // Выбран студент
@@ -285,8 +403,9 @@ namespace _2lab_kpo_tree
                         }
                     }
 
+                    // Удаляем узел из дерева
+                    trv_Data.SelectedNode.Remove();
                     MessageBox.Show("Студент удален!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    btn_load.PerformClick(); // Обновляем дерево
                 }
             }
         }
