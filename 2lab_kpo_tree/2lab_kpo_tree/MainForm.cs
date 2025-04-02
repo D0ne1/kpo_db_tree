@@ -173,17 +173,21 @@ namespace _2lab_kpo_tree
 
         private void добавитьГруппуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Факультет выбран
+            if (trv_Data.SelectedNode != null && trv_Data.SelectedNode.Parent == null) // Если выбран факультет
             {
                 int facultyId = (int)trv_Data.SelectedNode.Tag;
 
-                using (var form = new AddGroup(facultyId, ConnectionString))
+                using (var form = new AddGroup(facultyId, ConnectionString)) // Исправлено название формы
                 {
                     if (form.ShowDialog() == DialogResult.OK)
                     {
                         btn_load.PerformClick(); // Обновляем дерево
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Выберите факультет, чтобы добавить группу!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

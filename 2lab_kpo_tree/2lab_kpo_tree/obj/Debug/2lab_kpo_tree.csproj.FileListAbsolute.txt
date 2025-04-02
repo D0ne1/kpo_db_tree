@@ -20,7 +20,6 @@ C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kp
 C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\_2lab_kpo_tree.AddGroup.resources
 C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\_2lab_kpo_tree.MainForm.resources
 C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\_2lab_kpo_tree.Properties.Resources.resources
-C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\_2lab_kpo_tree.Student_Form.resources
 C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\_2lab_kpo_tree.UpdateFaculty.resources
 C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\2lab_kpo_tree.csproj.GenerateResource.cache
 C:\ДАНИИЛ\универ\2 курс\кпо\.2lab_kpo_new\kpo_db_tree\2lab_kpo_tree\2lab_kpo_tree\obj\Debug\2lab_kpo_tree.csproj.CoreCompileInputs.cache

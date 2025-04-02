@@ -66,12 +66,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Student_Form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Student_Form.Designer.cs">
-      <DependentUpon>Student_Form.cs</DependentUpon>
-    </Compile>
     <Compile Include="UpdateFaculty.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,9 +90,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Student_Form.resx">
-      <DependentUpon>Student_Form.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UpdateFaculty.resx">
       <DependentUpon>UpdateFaculty.cs</DependentUpon>
     </EmbeddedResource>

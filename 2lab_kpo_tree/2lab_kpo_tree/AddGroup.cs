@@ -49,7 +49,7 @@ namespace _2lab_kpo_tree
             using (SqlConnection cn = new SqlConnection(ConnectionString))
             {
                 cn.Open();
-                string query = "INSERT INTO Groups (Title, FacultyId) VALUES (@Title, @FacultyId)";
+                string query = "INSERT INTO Groups (Title, Faculty_Id) VALUES (@Title, @FacultyId)";
                 using (SqlCommand cmd = new SqlCommand(query, cn))
                 {
                     cmd.Parameters.AddWithValue("@Title", textBoxTitle.Text);
